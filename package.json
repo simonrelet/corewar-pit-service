@@ -1,9 +1,10 @@
 {
   "name": "corewar-pit-service",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The coreware pit service",
-  "main": "app/index.js",
+  "main": "app/corewar_pit_service.js",
   "scripts": {
+    "serve": "forever start -p logs/ -l forever.log -a -o logs/out.log -e logs/err.log app/corewar_pit_service.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Simon Relet",
