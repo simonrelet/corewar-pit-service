@@ -78,7 +78,14 @@ function deleteShipFile(res) {
 
 router.post('/', function (req, res) {
   ensureTmpDir().then(function () {
-    if (!req.body.src) {
+    if (req.body.src) {
+      writeShipFile(req.body.src)
+        .then(runPit)
+        .then(deleteShipFile)
+        .then(function (r) {
+          res.json(r);
+        });
+    } else {
       console.log('The request doesn\'t contain a \'src\' attribute');
       res.json({
         errors: [{
@@ -86,13 +93,6 @@ router.post('/', function (req, res) {
           msg: 'The request doesn\'t contain a \'src\' attribute'
         }]
       });
-    } else {
-      writeShipFile(req.body.src)
-        .then(runPit)
-        .then(deleteShipFile)
-        .then(function (r) {
-          res.json(r);
-        });
     }
   });
 });
