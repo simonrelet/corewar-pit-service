@@ -1,11 +1,9 @@
 'use strict';
 
-var app = require('express')();
+const app = require('express')();
 
-app.use('/', require('./pit-router.js'));
+app.use('/', require('./routers/pit-router.js'));
 
-var server = app.listen(4201, function() {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Corewar pit service listening at http://%s:%s', host, port);
+let server = app.listen(4201, () => {
+  console.log(`Listening on port ${server.address().port}`);
 });
