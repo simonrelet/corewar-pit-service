@@ -25,35 +25,18 @@ let getOptions = req => {
 
 let runPit = options => {
   return ship => {
-    return pit.run(ship).catch(err => Promise.reject({
-      status: STATUS_SERVER_ERROR,
-      message: err.message || err
-    }));
+    return pit.run(ship, options)
+      .catch(err => Promise.reject({
+        status: STATUS_SERVER_ERROR,
+        message: err.message || err
+      }));
   };
-};
-
-let prettyPrint = (prefix, logs) => {
-  return logs.map(log => `${prefix} line ${log.line}: ${log.message}`)
-    .reduce((prev, line) => `${prev}\n${line}`);
-};
-
-let prettyPrintResults = (res, result) => {
-  let out = '';
-  if (result.value) {
-    out = `Your ship is ready to kick asses!\n\nship: ${result.value}\n`;
-  } else {
-    out = `Go fix your ship!\n${prettyPrint('Error', result.errors)}\n`;
-  }
-  if (result.warnings) {
-    out += `${prettyPrint('Warning', result.warnings)}\n`;
-  }
-  res.send(out);
 };
 
 let sendResult = (res, options) => {
   return result => {
     if (options.pretty) {
-      prettyPrintResults(res, result);
+      res.send(result);
     } else {
       res.json(result);
     }
