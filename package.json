@@ -1,6 +1,6 @@
 {
   "name": "corewar-pit-service",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The coreware pit service",
   "main": "app/corewar_pit_service.js",
   "scripts": {
