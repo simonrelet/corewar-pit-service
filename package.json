@@ -2,11 +2,11 @@
   "name": "corewar-pit-service",
   "version": "0.4.0",
   "description": "The coreware pit service",
-  "main": "app/corewar_pit_service.js",
+  "main": "app/index.js",
   "scripts": {
     "clean": "rm -fr logs",
     "dist-clean": "npm run clean node_modules",
-    "start": "mkdir -p logs && forever start --uid pit -p logs/ -l forever.log -a -o logs/out.log -e logs/err.log app/corewar_pit_service.js",
+    "start": "mkdir -p logs && forever start --uid pit -p logs/ -l forever.log -a -o logs/out.log -e logs/err.log app/index.js",
     "stop": "forever stop pit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

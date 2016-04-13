@@ -2,9 +2,10 @@
 
 const fsp = require('fs-promise');
 const exec = require('child_process').exec;
+const constants = require('./constants');
 
 const SHIPS_PATH = 'bin/ships/';
-const COMMAND = 'java -jar bin/pit.jar';
+const COMMAND = `java -jar bin/${constants.config.bin}`;
 
 let ensureTmpDir = () => {
   return fsp.ensureDir(SHIPS_PATH);
